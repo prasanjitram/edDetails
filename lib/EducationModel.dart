@@ -1,4 +1,4 @@
-class Education{
+class EducationModel{
   String college;
   String degree;
   String fieldOfStudy;
@@ -7,7 +7,7 @@ class Education{
   String grade;
   String activities;
   String description;
-  Education({required this.college,
+  EducationModel({required this.college,
   required this.degree,
   required this.fieldOfStudy,
   required this.startDate,

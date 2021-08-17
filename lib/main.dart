@@ -1,13 +1,19 @@
 import 'dart:convert';
 
 import 'package:education_details/EducationModel.dart';
+import 'package:education_details/Profile.dart';
 import 'package:flutter/material.dart';
+// Amplify Flutter Packages
+import 'package:amplify_flutter/amplify.dart';
+import 'package:amplify_datastore/amplify_datastore.dart';
+// import 'package:amplify_api/amplify_api.dart'; // UNCOMMENT this line after backend is deployed
+
+// Generated in previous step
+import 'models/ModelProvider.dart';
+import 'amplifyconfiguration.dart';
 
 void main() {
-  runApp(MaterialApp(
-    theme: ThemeData(primaryColor: Color(0xFF6624A6)),
-    home: EdDetails(),
-  ));
+  runApp(MaterialApp(home: Profile(),));
 }
 
 class EdDetails extends StatefulWidget {
@@ -18,86 +24,95 @@ class EdDetails extends StatefulWidget {
 }
 
 class _EdDetailsState extends State<EdDetails> {
+  bool _amplifyConfigured = false;
   Color primary = Color(0xFF6624A6);
   Color card = Color(0xFF3C096C);
   GlobalKey<FormState> _key = GlobalKey<FormState>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _configureAmplify();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery
         .of(context)
         .size;
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            width: size.width,
-            height: size.height,
-            decoration: BoxDecoration(
-              color: primary,
-            ),
-            child: ListView(
-              children: [
-                SizedBox(
-                  height: 40,
-                ),
-                Center(
-                    child: Text(
-                      'Education Details',
-                      style: TextStyle(
-                          fontFamily: 'Calder',
-                          color: Colors.white,
-                          fontSize: 30),
-                    )),
-                SizedBox(
-                  height: 50,
-                ),
-                Container(
-                  width: size.width,
-                  height: 100,
-                  margin: EdgeInsets.symmetric(horizontal: 40),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: card,
-                      boxShadow: [
-                        BoxShadow(
-                            offset: Offset(0, 10),
-                            blurRadius: 20,
-                            color: Colors.black.withOpacity(0.6))
-                      ]),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-      floatingActionButton: InkWell(
-        onTap: () {
-          alert(size);
-        },
-        child: Hero(
-          tag: "alert",
-          child: Container(
-            width: 60,
-            height: 60,
-            decoration: BoxDecoration(
-                color: card,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                      offset: Offset(0, 10),
-                      blurRadius: 20,
-                      color: Colors.black.withOpacity(0.6))
-                ]),
-            child: Icon(
-              Icons.add,
-              color: Colors.white,
-              size: 40,
+    return
+      Scaffold(
+        body: SingleChildScrollView(
+          child: SafeArea(
+            child: Container(
+              width: size.width,
+              height: size.height,
+              decoration: BoxDecoration(
+                color: primary,
+              ),
+              child: !_amplifyConfigured?CircularProgressIndicator(color: Colors.white,):ListView(
+                children: [
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Center(
+                      child: Text(
+                        'Education Details',
+                        style: TextStyle(
+                            fontFamily: 'Calder',
+                            color: Colors.white,
+                            fontSize: 30),
+                      )),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Container(
+                    width: size.width,
+                    height: 100,
+                    margin: EdgeInsets.symmetric(horizontal: 40),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: card,
+                        boxShadow: [
+                          BoxShadow(
+                              offset: Offset(0, 10),
+                              blurRadius: 20,
+                              color: Colors.black.withOpacity(0.6))
+                        ]),
+                  )
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
+        floatingActionButton: InkWell(
+          onTap: () {
+            alert(size);
+          },
+          child: Hero(
+            tag: 'alert',
+            child: Container(
+              width: 60,
+              height: 60,
+              decoration: BoxDecoration(
+                  color: card,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                        offset: Offset(0, 10),
+                        blurRadius: 20,
+                        color: Colors.black.withOpacity(0.6))
+                  ]),
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+                size: 40,
+              ),
+            ),
+          ),
+        ),
+      );
   }
 
   void alert(size) {
@@ -112,11 +127,11 @@ class _EdDetailsState extends State<EdDetails> {
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: false,
         pageBuilder: (BuildContext context, _, __) {
-          return Hero(
-            tag: "alert",
-            child: Scaffold(
-              backgroundColor: Colors.white.withOpacity(0.08),
-              body: Container(
+          return Scaffold(
+            backgroundColor: Colors.white.withOpacity(0.08),
+            body: Hero(
+              tag: 'alert',
+              child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 margin: EdgeInsets.symmetric(horizontal: 30, vertical: 110),
                 decoration: BoxDecoration(
@@ -135,7 +150,7 @@ class _EdDetailsState extends State<EdDetails> {
                       Row(
                         children: [
                           GestureDetector(
-                              onTap: () => Navigator.pop(context),
+                              onTap: () => Navigator.of(context).pop(),
                               child: Icon(
                                 Icons.arrow_back,
                                 size: 30,
@@ -176,7 +191,7 @@ class _EdDetailsState extends State<EdDetails> {
                             child: GestureDetector(
                               onTap: () {
                                 if (_key.currentState!.validate()) {
-                                 final obj =  Education(college: collegeController.text,
+                                 final obj =  EducationModel(college: collegeController.text,
                                       degree: degreeController.text,
                                       fieldOfStudy: fieldOfStudyController.text,
                                       startDate: startDateController.text,
@@ -282,5 +297,20 @@ class _EdDetailsState extends State<EdDetails> {
           ),
           focusColor: primary),
     );
+  }
+  void _configureAmplify() async {
+
+    // await Amplify.addPlugin(AmplifyAPI()); // UNCOMMENT this line after backend is deployed
+    await Amplify.addPlugin(AmplifyDataStore(modelProvider: ModelProvider.instance));
+
+    // Once Plugins are added, configure Amplify
+    await Amplify.configure(amplifyconfig);
+    try {
+      setState(() {
+        _amplifyConfigured = true;
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 }
