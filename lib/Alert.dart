@@ -69,17 +69,6 @@ class _AddState extends State<Add> {
             key: _key,
             child: ListView(
               children: [
-                Row(
-                  children: [
-                    GestureDetector(
-                        onTap: () => Navigator.pop(context),
-                        child: Icon(
-                          Icons.arrow_back,
-                          size: 30,
-                          color: Colors.white,
-                        )),
-                  ],
-                ),
                 SizedBox(
                   height: 10,
                 ),
@@ -93,46 +82,58 @@ class _AddState extends State<Add> {
                 ),
                 text('Company', companyController),
                 SizedBox(
-                  height: 10,
+                  height: 20,
                 ),
                 Row(
                   children: [
                     Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            _selectDate(context).then((value) {
-                              if(value!=DateTime.now()){
-                                setState(() {
-                                  expStart = false;
-                                  expStartDate = value;
-                                });
-                              }
-                            });
+                        child: Container(
+                          padding: EdgeInsets.only(bottom: 8),
+                          decoration: BoxDecoration(
+                              border: Border(bottom: BorderSide(width: 5.0,color: primary))
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              _selectDate(context).then((value) {
+                                if(value!=DateTime.now()){
+                                  setState(() {
+                                    expStart = false;
+                                    expStartDate = value;
+                                  });
+                                }
+                              });
 
-                          },
-                          child: Text(expStart
-                              ? 'Start date'
-                              : "${expStartDate.day}/${expStartDate.month}/${expStartDate.year}",style: TextStyle(fontSize: 20,color: Colors.white,),),
+                            },
+                            child: Text(expStart
+                                ? 'Start date'
+                                : "${expStartDate.day}/${expStartDate.month}/${expStartDate.year}",style: TextStyle(fontSize: 20,color: Colors.white,),),
+                          ),
                         )),
                     SizedBox(
                       width: 20,
                     ),
                     Expanded(
-                      child: GestureDetector(
-                        onTap:(){
-                          _selectDate(context).then((value) {
-                            if(value!=DateTime.now()){
-                              setState(() {
-                                expEnd = false;
-                                expEndDate = value;
-                              });
-                            }
-                          });
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 8),
+                        decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(width: 5.0,color: primary))
+                        ),
+                        child: GestureDetector(
+                          onTap:(){
+                            _selectDate(context).then((value) {
+                              if(value!=DateTime.now()){
+                                setState(() {
+                                  expEnd = false;
+                                  expEndDate = value;
+                                });
+                              }
+                            });
 
-                        },
-                          child: Text(expEnd
-                              ? 'End date'
-                              : "${expEndDate.day}/${expEndDate.month}/${expEndDate.year}",style: TextStyle(fontSize: 20,color: Colors.white,),),
+                          },
+                            child: Text(expEnd
+                                ? 'End date'
+                                : "${expEndDate.day}/${expEndDate.month}/${expEndDate.year}",style: TextStyle(fontSize: 20,color: Colors.white,),),
+                        ),
                       ),
                     )
                   ],
@@ -237,17 +238,6 @@ class _AddState extends State<Add> {
           key: _key,
           child: ListView(
             children: [
-              Row(
-                children: [
-                  GestureDetector(
-                      onTap: () => Navigator.pop(context),
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 30,
-                        color: Colors.white,
-                      )),
-                ],
-              ),
               SizedBox(
                 height: 10,
               ),
@@ -261,46 +251,58 @@ class _AddState extends State<Add> {
               ),
               text('Field of study', fieldOfStudyController),
               SizedBox(
-                height: 10,
+                height: 20,
               ),
               Row(
                 children: [
                   Expanded(
-                      child: GestureDetector(
-                        onTap: () {
-                          _selectDate(context).then((value) {
-                            if(value!=DateTime.now()){
-                              setState(() {
-                                edStart = false;
-                                edStartDate = value;
-                              });
-                            }
-                          });
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 8),
+                        decoration: BoxDecoration(
+                            border: Border(bottom: BorderSide(width: 5.0,color: primary))
+                        ),
+                        child: GestureDetector(
+                          onTap: () {
+                            _selectDate(context).then((value) {
+                              if(value!=DateTime.now()){
+                                setState(() {
+                                  edStart = false;
+                                  edStartDate = value;
+                                });
+                              }
+                            });
 
-                        },
-                        child: Text(edStart
-                            ? 'Start date'
-                            : "${edStartDate.day}/${edStartDate.month}/${edStartDate.year}",style: TextStyle(fontSize: 20,color: Colors.white,),),
+                          },
+                          child: Text(edStart
+                              ? 'Start date'
+                              : "${edStartDate.day}/${edStartDate.month}/${edStartDate.year}",style: TextStyle(fontSize: 20,color: Colors.white,),),
+                        ),
                       )),
                   SizedBox(
                     width: 20,
                   ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap:(){
-                        _selectDate(context).then((value) {
-                          if(value!=DateTime.now()){
-                            setState(() {
-                              edEnd = false;
-                              edEndDate = value;
-                            });
-                          }
-                        });
+                    child: Container(
+                      padding: EdgeInsets.only(bottom: 8),
+                      decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(width: 5.0,color: primary))
+                      ),
+                      child: GestureDetector(
+                        onTap:(){
+                          _selectDate(context).then((value) {
+                            if(value!=DateTime.now()){
+                              setState(() {
+                                edEnd = false;
+                                edEndDate = value;
+                              });
+                            }
+                          });
 
-                      },
-                      child: Text(edEnd
-                          ? 'End date'
-                          : "${edEndDate.day}/${edEndDate.month}/${edEndDate.year}",style: TextStyle(fontSize: 20,color: Colors.white,),),
+                        },
+                        child: Text(edEnd
+                            ? 'End date'
+                            : "${edEndDate.day}/${edEndDate.month}/${edEndDate.year}",style: TextStyle(fontSize: 20,color: Colors.white,),),
+                      ),
                     ),
                   )
                 ],
