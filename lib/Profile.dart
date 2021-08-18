@@ -93,54 +93,41 @@ class _ProfileState extends State<Profile> {
                       borderRadius: BorderRadius.circular(10)),
                   child: ListView(
                     children: [
-                      Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 20,
-                        child: Container(
-                          width: size.width,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF6624A6),
+                      GestureDetector(
+                        onTap: (){},
+                        child: Card(
+                          shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
+                          elevation: 20,
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            width: size.width,
+                            decoration: BoxDecoration(
+                                color: Color(0xFF6624A6),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('College: CET',style: TextStyle(color: Colors.white,fontSize: 18),),
+                                    Icon(Icons.edit,color: Colors.white,)
+                                  ],
+                                ),
+                                text('Degree: BTech'),
+                                text('Field of study: Engineering'),
+                                text('Start Date: Day/Month/Year'),
+                                text('End Date: Day/Month/Year'),
+                                text('Grade: 9.5'),
+                                text('Activities: Anything'),
+                                text('Description: Anything')
+                              ],
+                            ),
+                          ),
                         ),
                       ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 20,
-                        child: Container(
-                          width: size.width,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF6624A6),
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 20,
-                        child: Container(
-                          width: size.width,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF6624A6),
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 20,
-                        child: Container(
-                          width: size.width,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF6624A6),
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
+
                     ],
                   ),
                 ),
@@ -181,52 +168,37 @@ class _ProfileState extends State<Profile> {
                       borderRadius: BorderRadius.circular(10)),
                   child: ListView(
                     children: [
-                      Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 20,
-                        child: Container(
-                          width: size.width,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF6624A6),
+                      GestureDetector(
+                        onTap: (){},
+                        child: Card(
+                          shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 20,
-                        child: Container(
-                          width: size.width,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF6624A6),
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 20,
-                        child: Container(
-                          width: size.width,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF6624A6),
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                      ),
-                      Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        elevation: 20,
-                        child: Container(
-                          width: size.width,
-                          height: 100,
-                          decoration: BoxDecoration(
-                              color: Color(0xFF6624A6),
-                              borderRadius: BorderRadius.circular(10)),
+                          elevation: 20,
+                          child: Container(
+                            padding: EdgeInsets.all(10),
+                            width: size.width,
+                            decoration: BoxDecoration(
+                                color: Color(0xFF6624A6),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Title: Intern',style: TextStyle(color: Colors.white,fontSize: 18),),
+                                    Icon(Icons.edit,color: Colors.white,)
+                                  ],
+                                ),
+                                text('Experience type: Anything'),
+                                text('Company: Preppalz'),
+                                text('Location: BBSR'),
+                                text('Start Date: Day/Month/Year'),
+                                text('End Date: Day/Month/Year'),
+                                text('Description: Anything'),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
@@ -238,6 +210,9 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
+  }
+  Text text(String entry){
+    return  Text(entry,style: TextStyle(color: Colors.white,fontSize: 15),overflow: TextOverflow.ellipsis,);
   }
 
 }
