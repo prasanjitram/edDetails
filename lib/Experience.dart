@@ -3,8 +3,8 @@ class Experience{
   String experiencetype;
   String company;
   String location;
-  String startDate;
-  String endDate;
+  DateTime startDate;
+  DateTime endDate;
   String description;
   Experience({required this.title,
     required this.experiencetype,
@@ -19,8 +19,16 @@ class Experience{
       "Experience Type": experiencetype,
       "Company": company,
       "Location": location,
-      "Start Date": startDate,
-      "End Date":  endDate,
+      "Start Date": {
+        "day": startDate.day,
+        "month": startDate.month,
+        "year": startDate.year,
+      },
+      "End Date": {
+        "day": endDate.day,
+        "month": endDate.month,
+        "year": endDate.year,
+      },
       "Description": description
     };
   }

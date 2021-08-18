@@ -2,8 +2,8 @@ class EducationModel{
   String college;
   String degree;
   String fieldOfStudy;
-  String startDate;
-  String endDate;
+  DateTime startDate;
+  DateTime endDate;
   String grade;
   String activities;
   String description;
@@ -20,8 +20,16 @@ class EducationModel{
       "College": college,
       "Degree": degree,
       "Field Of Study": fieldOfStudy,
-      "Start Date": startDate,
-      "End Date":  endDate,
+      "Start Date": {
+        "day": startDate.day,
+        "month": startDate.month,
+        "year": startDate.year
+      },
+      "End Date": {
+        "day": endDate.day,
+        "month": endDate.month,
+        "year": endDate.year
+      },
       "Grade": grade,
       "Activities": activities,
       "Description": description
