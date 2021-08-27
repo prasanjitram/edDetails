@@ -23,10 +23,11 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Container(
@@ -72,8 +73,10 @@ class _ProfileState extends State<Profile> {
                           onTap: () {
                             showDialog(
                                 context: context,
-                                builder: (context) =>
-                                    Add(size: size, check: false,));
+                                builder: (context) => Add(
+                                      size: size,
+                                      check: false,
+                                    ));
                           },
                           child: Icon(
                             Icons.add,
@@ -94,7 +97,7 @@ class _ProfileState extends State<Profile> {
                   child: ListView(
                     children: [
                       GestureDetector(
-                        onTap: (){},
+                        onTap: () {},
                         child: Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -109,10 +112,18 @@ class _ProfileState extends State<Profile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('College: CET',style: TextStyle(color: Colors.white,fontSize: 18),),
-                                    Icon(Icons.edit,color: Colors.white,)
+                                    Text(
+                                      'College: CET',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    Icon(
+                                      Icons.edit,
+                                      color: Colors.white,
+                                    )
                                   ],
                                 ),
                                 text('Degree: BTech'),
@@ -127,7 +138,6 @@ class _ProfileState extends State<Profile> {
                           ),
                         ),
                       ),
-
                     ],
                   ),
                 ),
@@ -169,7 +179,7 @@ class _ProfileState extends State<Profile> {
                   child: ListView(
                     children: [
                       GestureDetector(
-                        onTap: (){},
+                        onTap: () {},
                         child: Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
@@ -184,10 +194,18 @@ class _ProfileState extends State<Profile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text('Title: Intern',style: TextStyle(color: Colors.white,fontSize: 18),),
-                                    Icon(Icons.edit,color: Colors.white,)
+                                    Text(
+                                      'Title: Intern',
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 18),
+                                    ),
+                                    Icon(
+                                      Icons.edit,
+                                      color: Colors.white,
+                                    )
                                   ],
                                 ),
                                 text('Experience type: Anything'),
@@ -209,10 +227,30 @@ class _ProfileState extends State<Profile> {
           ),
         ),
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(
+              child: Text('Preppalz'),
+              decoration: BoxDecoration(color: primary),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              onTap: () => Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Profile())),
+            )
+          ],
+        ),
+      ),
     );
   }
-  Text text(String entry){
-    return  Text(entry,style: TextStyle(color: Colors.white,fontSize: 15),overflow: TextOverflow.ellipsis,);
-  }
 
+  Text text(String entry) {
+    return Text(
+      entry,
+      style: TextStyle(color: Colors.white, fontSize: 15),
+      overflow: TextOverflow.ellipsis,
+    );
+  }
 }
