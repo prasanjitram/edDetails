@@ -20,9 +20,11 @@ Widget addDetail(icon, title, controller) {
   );
 }
 
-Widget buttons(title) {
+Widget buttons(title,Function function) {
   return Expanded(child: GestureDetector(
-    onTap: (){},
+    onTap: (){
+      function();
+    },
     child: Container(
       alignment: Alignment.center,
       height: 50,

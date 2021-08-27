@@ -86,11 +86,11 @@ class _AddProfileState extends State<AddProfile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  buttons('SAVE'),
+                  buttons('SAVE',save),
                   SizedBox(
                     width: 10,
                   ),
-                  buttons('CANCEL')
+                  buttons('CANCEL',cancel)
                 ],
               )
             ],
@@ -110,5 +110,12 @@ class _AddProfileState extends State<AddProfile> {
       return picked;
     else
       return DateTime.now();
+  }
+  void save(){
+    print("Save Button pressed");
+    Navigator.of(context).pop();
+  }
+  void cancel(){
+    Navigator.of(context).pop();
   }
 }
